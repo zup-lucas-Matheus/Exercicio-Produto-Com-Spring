@@ -6,6 +6,7 @@ import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController// meu controlador
@@ -16,7 +17,7 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping //Vou receber informação nesse metódo...
-    public List<Produto> cadastrarProduto(@RequestBody Produto produto){
+    public List<Produto> cadastrarProduto(@RequestBody @Valid Produto produto){ // @Valid vai validar os erros.
 
         produtoService.adicionarProduto(produto);
         return produtoService.retornarEstoque();
